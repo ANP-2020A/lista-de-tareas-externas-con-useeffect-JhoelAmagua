@@ -1,13 +1,24 @@
-import React from 'react';
-import UserList from './UserList'
-import TodoList from './TodoList';
+import React, { useState } from 'react';
 import '../styles/App.css';
+import UserList from './UserList';
+import TodoList from './TodoList';
 
 const App = () => {
-    return(
+
+    const [ viewTasks, setViewTasks ] = useState( true );
+
+    return (
         <>
             <UserList />
-            <TodoList/>
+
+            <button onClick={ () => setViewTasks( ( prevViewTasks ) => !prevViewTasks ) }>
+                { viewTasks
+                    ? 'Ocultar'
+                    : 'Ver' } lista de tareas
+            </button>
+            {
+                viewTasks && <TodoList />
+            }
         </>
     );
 };
